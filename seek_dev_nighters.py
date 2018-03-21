@@ -2,6 +2,7 @@ import requests
 import pytz
 from datetime import datetime
 
+
 def get_amount_pages():
     url = 'https://devman.org/api/challenges/solution_attempts/'
     response = requests.get(
