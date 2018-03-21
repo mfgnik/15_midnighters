@@ -46,9 +46,9 @@ def get_midnighters(attempts):
 
 if __name__ == '__main__':
     midnighters = get_midnighters(load_attempts())
-    if len(midnighters) == 0:
-        print('There is no midnighters')
-    else:
+    if midnighters:
         print('List of midnighters:')
         for midnighter in midnighters:
             print(midnighter)
+    else:
+        print('There is no midnighters')
