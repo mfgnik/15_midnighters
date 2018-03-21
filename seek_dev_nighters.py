@@ -3,21 +3,11 @@ import pytz
 from datetime import datetime
 
 
-def get_amount_pages():
-    url = 'https://devman.org/api/challenges/solution_attempts/'
-    response = requests.get(
-        url=url,
-        params={
-            'page': 1
-        }
-    )
-    return response.json()['number_of_pages']
-
-
 def load_attempts():
-    pages = get_amount_pages()
+    page = 1
+    pages = 1
     url = 'https://devman.org/api/challenges/solution_attempts/'
-    for page in range(1, pages + 1):
+    while page <= pages:
         response = requests.get(
             url=url,
             params={
@@ -27,6 +17,8 @@ def load_attempts():
         attempts_list = response['records']
         for attempt in attempts_list:
             yield attempt
+        pages = response['number_of_pages']
+        page += 1
 
 
 def is_user_midnighter(attempt):
